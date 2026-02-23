@@ -4,6 +4,10 @@
  */
 package clases;
 
+import java.util.ArrayList;
+import java.util.List;
+import persistencia.CajeroObservador;
+
 /**
  *
  * @author edgar
@@ -13,6 +17,28 @@ public class Cajero {
     public double cantidadDinero;
     private Usuario usuario;
     private Tarjeta tarjeta;
+    private List<CajeroObservador> observers= new ArrayList<>();
+    
+    public void addObserver(CajeroObservador obs){
+        observers.add(obs);
+    }
+    
+    public void notifyObservers(){
+        for (CajeroObservador obs: observers){
+            obs.update();
+        }
+    }
+    
+    /**
+     * Para cuando ya se hace un retiro de dinero actualiza el estado del dinero que hay dentro del cajero
+     * @param dinero dinero retirado
+     */
+    public void hacerRetiro(double dinero){
+        cantidadDinero= cantidadDinero-dinero;
+        double cant=tarjeta.getMonto();
+        tarjeta.setMonto(cant-dinero);
+        notifyObservers();
+    }
 
     public Cajero(int idCajero, double cantidadDinero) {
         this.idCajero = idCajero;
