@@ -1,6 +1,7 @@
 package main;
 
 import clases.Cajero;
+import declaraciones.Declaraciones;
 import frames.FrmIniciarSesionT;
 import persistencia.ControlCajero;
 
@@ -22,6 +23,7 @@ public class RetirarEfectivo {
         // TODO code application logic here
         Cajero cs= Cajero.crear();
         ControlCajero control= new ControlCajero(cs);
+        Declaraciones ds=new Declaraciones(control);
         
         FrmIniciarSesionT frm=new FrmIniciarSesionT(control);
         frm.setVisible(true);

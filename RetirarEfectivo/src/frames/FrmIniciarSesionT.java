@@ -4,7 +4,11 @@
  */
 package frames;
 
+import clases.Cajero;
 import clases.Tarjeta;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import persistencia.ControlCajero;
 
 /**
@@ -13,12 +17,14 @@ import persistencia.ControlCajero;
  */
 public class FrmIniciarSesionT extends javax.swing.JFrame {
     private Tarjeta tar;
+    private ControlCajero control;
     /**
      * Creates new form FrmIniciarSesionT
      */
-    public FrmIniciarSesionT(ControlCajero control) {
+    public FrmIniciarSesionT(ControlCajero cr) {
         initComponents();
-        control= ControlCajero.crear();
+        this.control= cr;
+        tar=new Tarjeta();
     }
 
     /**
@@ -52,14 +58,18 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Numero Tarjeta");
 
+        cbxNumTarjeta.setBackground(new java.awt.Color(65, 65, 65));
         cbxNumTarjeta.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        cbxNumTarjeta.setForeground(new java.awt.Color(204, 204, 204));
         cbxNumTarjeta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "4546 3213 3214 3214", "4546 6346 4342 6543", "4546 2535 5763 2454", " " }));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña");
 
+        pswPassword.setBackground(new java.awt.Color(65, 65, 65));
         pswPassword.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        pswPassword.setForeground(new java.awt.Color(204, 204, 204));
         pswPassword.setText("0000");
         pswPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -97,9 +107,9 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
                                 .addComponent(jLabel3)))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pswPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbxNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pswPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -149,12 +159,37 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
 
     private void pswPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswPasswordKeyPressed
         // TODO add your handling code here:
+        char c= evt.getKeyChar();
+        if(!Character.isDigit(c) && c!= KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
     }//GEN-LAST:event_pswPasswordKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(cbxNumTarjeta.getSelectedItem()=="---" || pswPassword.getSelectedText() ==null){
-            System.out.println("Hola");
+        String stringContras= new String(pswPassword.getPassword());
+        
+        if(cbxNumTarjeta.getSelectedItem()!="---" || stringContras !=null){
+            int contr= Integer.valueOf(stringContras);
+            String numTarg= String.valueOf(cbxNumTarjeta.getSelectedItem());
+            
+            //Validar la Tarjeta (osea que si existe en el cajero) numTargeta y contraseña
+            tar.setNumTarjeta(numTarg);
+            tar.setContrasenha(contr);
+            if(control.comprobarTargeta(tar)){
+                // Continuar con la Pantalla de Realizar Accion
+                Cajero cs= control.getCajero();
+                Tarjeta tr= control.obtenerTarjeta(tar);
+                cs.setTarjeta(tr);
+                cs.setUsuario(tr.getUsuario());
+                FrmRealizarAccionT frm=new FrmRealizarAccionT(control);
+                frm.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Contraseña Incorrecta","Error!!!", JOptionPane.OK_OPTION);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Componentes Vacios","Error!!!", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

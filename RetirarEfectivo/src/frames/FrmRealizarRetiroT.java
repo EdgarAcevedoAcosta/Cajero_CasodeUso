@@ -4,17 +4,24 @@
  */
 package frames;
 
+import clases.*;
+import javax.swing.JOptionPane;
+import persistencia.ControlCajero;
+
 /**
  *
  * @author edgar
  */
 public class FrmRealizarRetiroT extends javax.swing.JFrame {
-
+    private ControlCajero control;
     /**
      * Creates new form FrmRealizarRetiroT
      */
-    public FrmRealizarRetiroT() {
+    public FrmRealizarRetiroT(ControlCajero cr) {
         initComponents();
+        this.control= cr;
+        ActualizarEstado();
+        
     }
 
     /**
@@ -151,6 +158,11 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
 
         cbxMonto.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         cbxMonto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "200", "400", "600", "800", "1000", "1200", "1400", "1600" }));
+        cbxMonto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxMontoItemStateChanged(evt);
+            }
+        });
 
         btnRetiro.setBackground(new java.awt.Color(66, 160, 66));
         btnRetiro.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -238,12 +250,48 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroActionPerformed
         // TODO add your handling code here:
+        Cajero cj=control.getCajero();
+        Tarjeta tar= cj.getTarjeta();
+        if(control.VerificarDineroSistema(cj, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())))){
+            if(control.ComprobarMontoUsuario(tar, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())))){
+                if(control.HacerRetiro(cj, tar, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())))){
+                    FrmReciboT frm=new FrmReciboT(control, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())), 21.00);
+                    frm.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se Pudo Hacer el Retiro","Error!!!", JOptionPane.OK_OPTION);
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "No Tienes Suficiente Dinero para Hacer Esta Acción","Error!!!", JOptionPane.OK_OPTION);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay Suficiente Dinero en el Sistema","Error!!!", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_btnRetiroActionPerformed
 
+    private void cbxMontoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMontoItemStateChanged
+        // TODO add your handling code here:
+        ActualizarEstado();
+    }//GEN-LAST:event_cbxMontoItemStateChanged
+
+    public void ActualizarEstado(){
+        Cajero cj=control.getCajero();
+        Tarjeta tar= cj.getTarjeta();
+        Usuario user= tar.getUsuario();
+        
+        lblNombre.setText(user.getNombre());
+        lblMonto.setText("$ "+String.valueOf(tar.getMonto()));
+        lblCantidad.setText(String.valueOf(cbxMonto.getSelectedItem()));
+        lblComision.setText("$ 21");
+        double total= tar.getMonto()- Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())) - 21.00;
+        lblMontoFinal.setText(String.valueOf(total));
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRetiro;

@@ -4,17 +4,29 @@
  */
 package frames;
 
+import clases.Cajero;
+import clases.Tarjeta;
+import clases.Usuario;
+import persistencia.ControlCajero;
+
 /**
  *
  * @author edgar
  */
 public class FrmReciboT extends javax.swing.JFrame {
-
+    private ControlCajero control;
+    private double cantidad;
+    private double comision;
     /**
      * Creates new form FrmReciboT
      */
-    public FrmReciboT() {
+    public FrmReciboT(ControlCajero cr, double can, double comis) {
         initComponents();
+        this.control= cr;
+        this.cantidad=can;
+        this.comision=comis;
+        recibo();
+        
     }
 
     /**
@@ -171,8 +183,33 @@ public class FrmReciboT extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    public void recibo(){
+        Cajero cj=control.getCajero();
+        Tarjeta tar= cj.getTarjeta();
+        Usuario user= tar.getUsuario();
+        
+        lblNombre.setText(user.getNombre());
+        String numt= ocultarNumTarjeta(tar.getNumTarjeta());
+        lblnumTarjeta.setText(numt);
+        lblCantidad.setText(String.valueOf(cantidad));
+        lblComision.setText(String.valueOf(comision));
+    }
+    
+    public String ocultarNumTarjeta(String tarj){
+        String numeros = tarj.replaceAll("\\s+", "");
+         //Para tomar los ultimos 4 Digitos
+         String ultimos = numeros.substring(numeros.length() - 4);
+         
+         StringBuilder ocultar = new StringBuilder();
+         for( int i=0 ; i < numeros.length() - 4 ; i++){
+             ocultar.append("*");
+         }
+         ocultar.append(ultimos);
+         return ocultar.toString().replaceAll("(.{4})(?!$)", "$1 ");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;

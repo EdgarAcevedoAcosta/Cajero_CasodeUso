@@ -62,12 +62,14 @@ public class ControlCajero {
     // ------------ Tarjetas  -----------
 
     /**
-     *
+     * Para validar una Tarjeta, con las tarjetas que tiene el cajero, por su
+     * numero de tarjeta y su contraseña, validar que existe la tarjeta y ve si 
+     * es su conrtraseña
      * @param tar
      * @return
      */
     public boolean comprobarTargeta(Tarjeta tar){
-        if(ValidarContrasenha(tar)){
+        if(ValidarContrasenha(tar) && ValidarNumTarjeta(tar)){
             return true;
         }
         return false;
@@ -113,6 +115,33 @@ public class ControlCajero {
     }
     
     /**
+     * Obtiene una tarjeta por el numero de tarjeta, obtiene toda la tarjeta
+     * @param tar Taejeta que Nadamas Tenga Numero de Tarjeta y Contraseña
+     * @return Devuelve una tarjeta completa o null si no existe
+     */
+    public Tarjeta obtenerTarjeta(Tarjeta tar){
+        List<Tarjeta> listaTarjeta=cajero.getListaTarjeta();
+        if(!listaTarjeta.isEmpty()){
+            for(Tarjeta tarjeta: listaTarjeta){
+                if(tarjeta.getNumTarjeta()== tar.getNumTarjeta()){
+                    return tarjeta;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public void listaTarjetas(){
+        List<Tarjeta> listaTarjeta=cajero.getListaTarjeta();
+        if(!listaTarjeta.isEmpty()){
+            for(Tarjeta tarjeta: listaTarjeta){
+                System.out.println(tarjeta.getNumTarjeta());
+                System.out.println(tarjeta.getContrasenha());
+            }
+        }
+    }
+    
+    /**
      *
      * @param tar
      * @return
@@ -126,10 +155,11 @@ public class ControlCajero {
                     return false;
                 }
             }
-            listaTarjeta.add(tar);
+            cajero.AgregarTrajeta(tar);
             return true;
         }
-        return false;
+        cajero.AgregarTrajeta(tar);
+        return true;
     }
     
     /**
@@ -156,9 +186,11 @@ public class ControlCajero {
     
     // ----- Hacer Retiro ----
     public boolean HacerRetiro(Cajero caj, Tarjeta tar, double montoFinal){
-        ActualizarValorCajero(caj,montoFinal);
-        ActualizarValorTarjeta(tar,montoFinal);
-        return true;
+        boolean retiro=false;
+        retiro= ActualizarValorCajero(caj,montoFinal);
+        retiro= ActualizarValorTarjeta(tar,montoFinal);
+        System.out.println("Se Realizo la Actualización");
+        return retiro;
     }
     
     /**
@@ -184,6 +216,10 @@ public class ControlCajero {
         tar.setMonto(dinero-monto);
         return true;
         
+    }
+
+    public Cajero getCajero() {
+        return cajero;
     }
     
     

@@ -21,6 +21,10 @@ public class Tarjeta {
         this.usuario = usuario;
     }
 
+    public Tarjeta() {
+    }
+    
+
     public String getNumTarjeta() {
         return numTarjeta;
     }

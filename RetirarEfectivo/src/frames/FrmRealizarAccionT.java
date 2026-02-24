@@ -4,17 +4,21 @@
  */
 package frames;
 
+import javax.swing.JOptionPane;
+import persistencia.ControlCajero;
+
 /**
  *
  * @author edgar
  */
 public class FrmRealizarAccionT extends javax.swing.JFrame {
-
+    private ControlCajero control;
     /**
      * Creates new form FrmRealizarAccionT
      */
-    public FrmRealizarAccionT() {
+    public FrmRealizarAccionT(ControlCajero cr) {
         initComponents();
+        this.control= cr;
     }
 
     /**
@@ -121,14 +125,19 @@ public class FrmRealizarAccionT extends javax.swing.JFrame {
 
     private void btnEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Au8n no se Implementa Esta Pantalla","Error!!!", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_btnEstadoActionPerformed
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
         // TODO add your handling code here:
+        FrmRealizarRetiroT frm =new FrmRealizarRetiroT(control);
+        frm.setVisible(true);
+        
     }//GEN-LAST:event_btnRetirarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
 

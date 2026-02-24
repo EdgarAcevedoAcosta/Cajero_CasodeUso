@@ -17,10 +17,11 @@ public class Declaraciones {
     public Declaraciones(ControlCajero cs) {
         this.control=cs;
         agregarTarjetas();
+        System.out.println("Se agregaron Tarjetas");
     }
     
     public void agregarTarjetas(){
-        Usuario user= new Usuario("Edgar Aceved0");
+        Usuario user= new Usuario("Edgar Acevedo");
         Usuario user2= new Usuario("Carlos Gonzales");
         Usuario user3= new Usuario("Jose Jose");
         

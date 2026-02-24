@@ -31,6 +31,9 @@ public class Cajero {
             obs.update();
         }
     }
+    public void AgregarTrajeta(Tarjeta tar){
+        listaTarjeta.add(tar);
+    }
     
     /**
      * Para cuando ya se hace un retiro de dinero actualiza el estado del dinero que hay dentro del cajero
