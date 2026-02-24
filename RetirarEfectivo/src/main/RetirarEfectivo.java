@@ -1,9 +1,3 @@
-
-import clases.Cajero;
-import declaraciones.Declaraciones;
-import frames.FrmIniciarSeion;
-import persistencia.ControlCajero;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
@@ -13,19 +7,13 @@ import persistencia.ControlCajero;
  *
  * @author edgar
  */
-public class Main {
+public class RetirarEfectivo {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Cajero cs= Cajero.crear();
-        
-        FrmIniciarSeion ss=new FrmIniciarSeion(cs);
-        ControlCajero cotrl= ControlCajero.crear();
-        Declaraciones dec=new Declaraciones(cotrl);
-        ss.setVisible(true);
     }
     
 }
