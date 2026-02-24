@@ -17,7 +17,9 @@ public class Cajero {
     public double cantidadDinero;
     private Usuario usuario;
     private Tarjeta tarjeta;
-    private List<CajeroObservador> observers= new ArrayList<>();
+    private List<Tarjeta> listaTarjeta;
+    private List<CajeroObservador> observers;
+    private static Cajero instance;
     
     public void addObserver(CajeroObservador obs){
         observers.add(obs);
@@ -33,16 +35,23 @@ public class Cajero {
      * Para cuando ya se hace un retiro de dinero actualiza el estado del dinero que hay dentro del cajero
      * @param dinero dinero retirado
      */
-    public void hacerRetiro(double dinero){
-        cantidadDinero= cantidadDinero-dinero;
-        double cant=tarjeta.getMonto();
-        tarjeta.setMonto(cant-dinero);
+    public void hacerRetiro(){
         notifyObservers();
     }
+    
+    public static Cajero crear(){
+        if(instance == null){
+            instance=new Cajero(1,1500.00);
+        }
+        return instance;
+        
+    }
 
-    public Cajero(int idCajero, double cantidadDinero) {
+    private Cajero(int idCajero, double cantidadDinero) {
         this.idCajero = idCajero;
         this.cantidadDinero = cantidadDinero;
+        observers= new ArrayList<>();
+        listaTarjeta= new ArrayList<>();
     }
 
     public int getIdCajero() {
@@ -76,6 +85,13 @@ public class Cajero {
     public void setTarjeta(Tarjeta tarjeta) {
         this.tarjeta = tarjeta;
     }
+
+    public List<Tarjeta> getListaTarjeta() {
+        return listaTarjeta;
+    }
+    
+    
+    
     
     
 }
