@@ -138,7 +138,7 @@ public class FrmRealizarAccionT extends javax.swing.JFrame {
         // TODO add your handling code here:
         FrmRealizarRetiroT frm =new FrmRealizarRetiroT(control);
         frm.setVisible(true);
-        dispose();
+        this.dispose();
         
     }//GEN-LAST:event_btnRetirarActionPerformed
 

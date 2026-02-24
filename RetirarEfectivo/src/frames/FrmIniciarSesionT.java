@@ -181,7 +181,7 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
                 cs.setTarjeta(tr);
                 cs.setUsuario(tr.getUsuario());
                 FrmRealizarAccionT frm=new FrmRealizarAccionT(control);
-                this.setVisible(false);
+                this.show(rootPaneCheckingEnabled);
                 frm.setVisible(true);
                 cbxNumTarjeta.setSelectedIndex(0);
                 pswPassword.setText("");
