@@ -59,7 +59,9 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Realizar Retiro");
 
+        btnSalir.setBackground(new java.awt.Color(65, 65, 65));
         btnSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Cancalar");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,34 +69,46 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
             }
         });
 
+        frmEstado.setBackground(new java.awt.Color(65, 65, 65));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Monto Actual");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cantidad de Retiro");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Comisión");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Monto Final");
 
         lblNombre.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre");
 
         lblMonto.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        lblMonto.setForeground(new java.awt.Color(255, 255, 255));
         lblMonto.setText("Nombre");
 
         lblCantidad.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(255, 255, 255));
         lblCantidad.setText("Nombre");
 
         lblComision.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        lblComision.setForeground(new java.awt.Color(255, 255, 255));
         lblComision.setText("Nombre");
 
         lblMontoFinal.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        lblMontoFinal.setForeground(new java.awt.Color(255, 255, 255));
         lblMontoFinal.setText("Nombre");
 
         javax.swing.GroupLayout frmEstadoLayout = new javax.swing.GroupLayout(frmEstado);
@@ -110,13 +124,12 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addGroup(frmEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addGroup(frmEstadoLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel6))
                             .addComponent(jLabel4)))
                     .addGroup(frmEstadoLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel7)))
+                        .addGroup(frmEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))))
                 .addGap(40, 40, 40)
                 .addGroup(frmEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,11 +154,11 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
                 .addGroup(frmEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblCantidad))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(frmEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(lblComision))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(frmEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblMontoFinal))
@@ -156,7 +169,9 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Monto");
 
+        cbxMonto.setBackground(new java.awt.Color(65, 65, 65));
         cbxMonto.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
+        cbxMonto.setForeground(new java.awt.Color(255, 255, 255));
         cbxMonto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "200", "400", "600", "800", "1000", "1200", "1400", "1600" }));
         cbxMonto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -164,9 +179,9 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
             }
         });
 
-        btnRetiro.setBackground(new java.awt.Color(66, 160, 66));
+        btnRetiro.setBackground(new java.awt.Color(74, 206, 74));
         btnRetiro.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnRetiro.setForeground(new java.awt.Color(51, 51, 51));
+        btnRetiro.setForeground(new java.awt.Color(0, 0, 0));
         btnRetiro.setText("Realizar Retiro");
         btnRetiro.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(22, 96, 22), new java.awt.Color(18, 91, 18)));
         btnRetiro.addActionListener(new java.awt.event.ActionListener() {
@@ -181,27 +196,24 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(200, 200, 200))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(frmEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(200, 200, 200))
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(frmEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addComponent(jLabel2)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbxMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(btnRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(12, Short.MAX_VALUE))))))
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,16 +222,14 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(frmEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(frmEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbxMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
+                        .addGap(140, 140, 140)
                         .addComponent(btnRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -228,7 +238,7 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 658, Short.MAX_VALUE)
+            .addGap(0, 676, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -260,8 +270,10 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
         if(control.VerificarDineroSistema(cj, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())))){
             if(control.ComprobarMontoUsuario(tar, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())))){
                 if(control.HacerRetiro(cj, tar, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())))){
+                    control.AgregarComision(cj, 21.00);
                     FrmReciboT frm=new FrmReciboT(control, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())), 21.00);
                     frm.setVisible(true);
+                    dispose();
                 }else{
                     JOptionPane.showMessageDialog(this, "No se Pudo Hacer el Retiro","Error!!!", JOptionPane.OK_OPTION);
                 }
@@ -286,10 +298,10 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
         
         lblNombre.setText(user.getNombre());
         lblMonto.setText("$ "+String.valueOf(tar.getMonto()));
-        lblCantidad.setText(String.valueOf(cbxMonto.getSelectedItem()));
+        lblCantidad.setText("$ "+String.valueOf(cbxMonto.getSelectedItem()));
         lblComision.setText("$ 21");
         double total= tar.getMonto()- Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())) - 21.00;
-        lblMontoFinal.setText(String.valueOf(total));
+        lblMontoFinal.setText("$ "+String.valueOf(total));
         
     }
 

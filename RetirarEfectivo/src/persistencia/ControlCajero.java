@@ -6,6 +6,7 @@ package persistencia;
 
 import clases.*;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,6 +16,10 @@ public class ControlCajero {
     private Cajero cajero;
     private static ControlCajero control;
 
+    /**
+     * Constructor del control 
+     * @param cajero De un cajero
+     */
     public ControlCajero(Cajero cajero) {
         this.cajero = cajero;
     }
@@ -26,7 +31,7 @@ public class ControlCajero {
 
     /**
      * unica Instancia del control para usarlo mejor
-     * @return
+     * @return un control de un solo control
      */
     
     public static ControlCajero crear(){
@@ -38,10 +43,10 @@ public class ControlCajero {
     
     //------- Cajero -------------
     /**
-     *
-     * @param caj
-     * @param cantidad
-     * @return
+     * Verificar el Dinero que hay en el sistema
+     * @param caj el cajero a que esta haciedo una operacion
+     * @param cantidad cantidad de dinero que se va hacer una transferencia
+     * @return devuelve true si si se puede hacer el retiro
      */
     public boolean VerificarDineroSistema(Cajero caj, double cantidad){
         if(verCantidadDineroEnSistema(caj) >= cantidad){
@@ -51,9 +56,9 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param caj
-     * @return
+     * Verificar la contidad del dinero del cajero
+     * @param caj el cajero que esta haciendo referencia
+     * @return devuelve la cantidad de dinero en el sistema/ cajero
      */
     public double verCantidadDineroEnSistema(Cajero caj){
         return caj.getCantidadDinero();
@@ -65,8 +70,8 @@ public class ControlCajero {
      * Para validar una Tarjeta, con las tarjetas que tiene el cajero, por su
      * numero de tarjeta y su contraseña, validar que existe la tarjeta y ve si 
      * es su conrtraseña
-     * @param tar
-     * @return
+     * @param tar La Tarjeta que se va ha comprobar
+     * @return Devuelve True si es que existe la tarjeta y false si no
      */
     public boolean comprobarTargeta(Tarjeta tar){
         if(ValidarContrasenha(tar) && ValidarNumTarjeta(tar)){
@@ -76,9 +81,9 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param tar
-     * @return
+     * Comprueba por una lista de Tarjetas, comparando por el numero de tarjeta
+     * @param tar Taejeta Buscada
+     * @return Devuelve true si es que Existe la Tarjeta y false si no
      */
     public boolean ValidarNumTarjeta(Tarjeta tar){
         List<Tarjeta> listaTarjeta=cajero.getListaTarjeta();
@@ -131,6 +136,9 @@ public class ControlCajero {
         return null;
     }
     
+    /**
+     * Es para Imprimir la Lista de las Tarjetas que hay.
+     */
     public void listaTarjetas(){
         List<Tarjeta> listaTarjeta=cajero.getListaTarjeta();
         if(!listaTarjeta.isEmpty()){
@@ -142,9 +150,11 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param tar
-     * @return
+     * Es para Agregar una Tarjeta, validando hay tarjetas, si no hay se agrega 
+     * la tarjeta, si hay tarjetas valida si existe esa tarjeta por su numero de 
+     * Tarjeta, si existe no la agrega, si no existe la agrega a la lista
+     * @param tar Tarjeta que se va a Agregar
+     * @return Devuelve true si si se Agrego y false si ya existe
      */
     public boolean agregarTarjeta(Tarjeta tar){
         List<Tarjeta> listaTarjeta=cajero.getListaTarjeta();
@@ -163,10 +173,10 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param tar
-     * @param monto
-     * @return
+     * Validar si el monto del Usuario para ver si puede hacer el retiro
+     * @param tar Tarjeta dek Usuario
+     * @param monto Cantidad a Hacer el retiro
+     * @return Devuelve true si si se pude hacer el retiro, y False si no se puede hacer
      */
     public boolean ComprobarMontoUsuario(Tarjeta tar, double monto){
         if(ValidarMontoRetiro(tar) >= monto){
@@ -176,15 +186,16 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param tar
-     * @return
+     * Mira el monto del usuario 
+     * @param tar Tarjeta del Usuario
+     * @return Monto del Usuario
      */
     public double ValidarMontoRetiro(Tarjeta tar){
         return tar.getMonto();
     }
     
     // ----- Hacer Retiro ----
+    
     public boolean HacerRetiro(Cajero caj, Tarjeta tar, double montoFinal){
         boolean retiro=false;
         retiro= ActualizarValorCajero(caj,montoFinal);
@@ -194,10 +205,10 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param caj
-     * @param monto
-     * @return
+     * Actualiza el Valor en el Cajero Cuando ya y Hace el Retiro
+     * @param caj Cajero a que Hace Referencia
+     * @param monto Cantidad del Retiro
+     * @return Devuelve si se realizo el retiro
      */
     public boolean ActualizarValorCajero(Cajero caj, double monto){
         double dinero=caj.getCantidadDinero();
@@ -206,10 +217,22 @@ public class ControlCajero {
     }
     
     /**
-     *
-     * @param tar
-     * @param monto
-     * @return
+     * Agrega la Comision que se Cobro al Usuario
+     * @param caj Cajero a que Hace Referencia
+     * @param monto Cantidad del Retiro
+     * @return Devuelve si se realizo la acción
+     */
+    public boolean AgregarComision(Cajero caj, double monto){
+        double dinero=caj.getCantidadDinero();
+        caj.setCantidadDinero(dinero+monto);
+        return true;
+    }
+    
+    /**
+     * Actualiza el Valor en la Tarjeta Cuando ya y Hace el Retiro
+     * @param tar Trajeta a que Hace Referencia
+     * @param monto Cantidad del Retiro
+     * @return Devuelve si se realizo el retiro
      */
     public boolean ActualizarValorTarjeta(Tarjeta tar, double monto){
         double dinero=tar.getMonto();
@@ -218,6 +241,10 @@ public class ControlCajero {
         
     }
 
+    /**
+     * Metodo para Hacer Referencia de un Cajero
+     * @return
+     */
     public Cajero getCajero() {
         return cajero;
     }

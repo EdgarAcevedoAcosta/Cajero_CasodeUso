@@ -44,7 +44,9 @@ public class FrmRealizarAccionT extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Realizar Acción");
 
+        btnEstado.setBackground(new java.awt.Color(65, 65, 65));
         btnEstado.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnEstado.setForeground(new java.awt.Color(255, 255, 255));
         btnEstado.setText("Estado De Cuenta");
         btnEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,7 +54,9 @@ public class FrmRealizarAccionT extends javax.swing.JFrame {
             }
         });
 
+        btnRetirar.setBackground(new java.awt.Color(65, 65, 65));
         btnRetirar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnRetirar.setForeground(new java.awt.Color(255, 255, 255));
         btnRetirar.setText("Retirar Efectiva");
         btnRetirar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +64,9 @@ public class FrmRealizarAccionT extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setBackground(new java.awt.Color(65, 65, 65));
         btnSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("RetirarTargeta");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +138,7 @@ public class FrmRealizarAccionT extends javax.swing.JFrame {
         // TODO add your handling code here:
         FrmRealizarRetiroT frm =new FrmRealizarRetiroT(control);
         frm.setVisible(true);
+        dispose();
         
     }//GEN-LAST:event_btnRetirarActionPerformed
 

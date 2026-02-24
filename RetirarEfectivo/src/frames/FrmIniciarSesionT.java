@@ -25,6 +25,9 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
         initComponents();
         this.control= cr;
         tar=new Tarjeta();
+        
+        cbxNumTarjeta.setSelectedIndex(0);
+        pswPassword.setText("");
     }
 
     /**
@@ -72,12 +75,12 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
         pswPassword.setForeground(new java.awt.Color(204, 204, 204));
         pswPassword.setText("0000");
         pswPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pswPasswordKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pswPasswordKeyTyped(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(66, 160, 66));
+        jButton1.setBackground(new java.awt.Color(74, 206, 74));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Continuar");
@@ -157,20 +160,14 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pswPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswPasswordKeyPressed
-        // TODO add your handling code here:
-        char c= evt.getKeyChar();
-        if(!Character.isDigit(c) && c!= KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE){
-            evt.consume();
-            Toolkit.getDefaultToolkit().beep();
-        }
-    }//GEN-LAST:event_pswPasswordKeyPressed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String stringContras= new String(pswPassword.getPassword());
+        char[] ps=  pswPassword.getPassword();
         
-        if(cbxNumTarjeta.getSelectedItem()!="---" || stringContras !=null){
+        String stringContras= new String(pswPassword.getPassword());
+        if(cbxNumTarjeta.getSelectedItem()=="---" || ps.length == 0){
+            JOptionPane.showMessageDialog(this, "Componentes Vacios","Error!!!", JOptionPane.OK_OPTION);
+        }else if(cbxNumTarjeta.getSelectedItem()!="---" && ps.length != 0){
             int contr= Integer.valueOf(stringContras);
             String numTarg= String.valueOf(cbxNumTarjeta.getSelectedItem());
             
@@ -184,14 +181,25 @@ public class FrmIniciarSesionT extends javax.swing.JFrame {
                 cs.setTarjeta(tr);
                 cs.setUsuario(tr.getUsuario());
                 FrmRealizarAccionT frm=new FrmRealizarAccionT(control);
+                this.setVisible(false);
                 frm.setVisible(true);
+                cbxNumTarjeta.setSelectedIndex(0);
+                pswPassword.setText("");
+                
             }else{
                 JOptionPane.showMessageDialog(this, "Contraseña Incorrecta","Error!!!", JOptionPane.OK_OPTION);
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Componentes Vacios","Error!!!", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void pswPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswPasswordKeyTyped
+        // TODO add your handling code here:
+        char c= evt.getKeyChar();
+        if(!Character.isDigit(c) && !Character.isWhitespace(c) && c!= KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_pswPasswordKeyTyped
 
 
 

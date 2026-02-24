@@ -74,7 +74,9 @@ public class FrmReciboT extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Cobro por Comisión");
 
+        btnSalir.setBackground(new java.awt.Color(65, 65, 65));
         btnSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Cerrar");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,8 +196,8 @@ public class FrmReciboT extends javax.swing.JFrame {
         lblNombre.setText(user.getNombre());
         String numt= ocultarNumTarjeta(tar.getNumTarjeta());
         lblnumTarjeta.setText(numt);
-        lblCantidad.setText(String.valueOf(cantidad));
-        lblComision.setText(String.valueOf(comision));
+        lblCantidad.setText("$ "+String.valueOf(cantidad));
+        lblComision.setText("$ "+String.valueOf(comision));
     }
     
     public String ocultarNumTarjeta(String tarj){
