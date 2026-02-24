@@ -5,7 +5,6 @@
 package persistencia;
 
 import clases.*;
-import frames.FrmIniciarSeion;
 import java.util.List;
 
 /**
