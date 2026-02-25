@@ -273,7 +273,7 @@ public class FrmRealizarRetiroT extends javax.swing.JFrame {
                     control.AgregarComision(cj, 21.00);
                     FrmReciboT frm=new FrmReciboT(control, Double.valueOf(String.valueOf(cbxMonto.getSelectedItem())), 21.00);
                     frm.setVisible(true);
-                    dispose();
+                    this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(this, "No se Pudo Hacer el Retiro","Error!!!", JOptionPane.OK_OPTION);
                 }
